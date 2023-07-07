@@ -1,4 +1,4 @@
-NAME = megaphone
+NAME = Phonebook
 
 SRCS = main.cpp Contact.cpp
 
