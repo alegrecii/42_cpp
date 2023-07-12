@@ -4,18 +4,21 @@
 
 int	main()
 {
-	Contact ale;
-	Contact oo;
+	PhoneBook	book;
+	std::string	cmd;
 
-	ale.set_all();
-	oo.set_all();
-	ale.display_tab(1);
-	ale.display_tab(2);
-	ale.display_tab(3);
-	ale.display_tab(4);
-	oo.display_tab(5);
-	oo.display_tab(6);
-	oo.display_tab(7);
-	oo.display_tab(8);
+	while (1)
+	{
+		std::cout<<"Insert command:";
+		std::getline(std::cin, cmd);
+		if (cmd.compare("ADD")== 0 || cmd.compare("add") == 0)
+			book.add_contact();
+		else if (cmd.compare("EXIT") == 0 || cmd.compare("exit") == 0)
+			break;
+		else if (cmd.compare("SEARCH")== 0 || cmd.compare("search") == 0)
+				book.search_contact();
+		else
+			std::cout<< "Command not found"<< std::endl;
+	}
 	return (0);
 }
