@@ -11,10 +11,40 @@ PhoneBook::~PhoneBook()
 	return ;
 }
 
+bool	check_numeric(std::string s)
+{
+	for (size_t i = 0; i < s.length(); i++)
+		if (!isdigit(s[i]))
+			return (false);
+	return (true);
+}
+
+int		PhoneBook::extract_index()
+{
+	int index = n;
+	std::string s;
+	while (index >= n || index < 0)
+	{
+		std::cout << "insert index: ";
+		std::getline(std::cin, s);
+		if (check_numeric(s))
+		{
+			index = std::stoi(s);
+			index--;
+		}
+		if (index >= n || index < 0)
+			std::cout<<"Please insert a valid index!"<< std::endl;
+	}
+	return (index);
+}
+
 void	PhoneBook::search_contact()
 {
-	int	index;
-
+	if (n == 0)
+	{
+		std::cout << "THE PHONEBOOK IS EMPTY!" << std::endl;
+		return ;
+	}
 	std::cout << "|";
 	std::cout << std::setw(10)<< "INDEX" <<"|";
 	std::cout << std::setw(10)<<"FIRST NAME" <<"|";
@@ -22,9 +52,7 @@ void	PhoneBook::search_contact()
 	std::cout << std::setw(10)<< "NICKNAME" <<"|" << std::endl;
 	for (int i = 0; i < n; i++)
 		array[i].display_tab(i);
-	std::cout << "insert index";
-	std::cin >> index ;
-	array[index].display_info();
+	array[extract_index()].display_info();
 	std::cout << std::flush;
 
 }

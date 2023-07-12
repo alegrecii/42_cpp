@@ -72,7 +72,7 @@ void	Contact::display_info()
 void	Contact::display_tab(int index)
 {
 	std::cout << "|";
-	std::cout << std::setw(10)<< index <<"|";
+	std::cout << std::setw(10)<< index + 1 <<"|";
 	std::cout << std::setw(10)<< check_trunc(first_name) <<"|";
 	std::cout << std::setw(10)<< check_trunc(last_name) <<"|";
 	std::cout << std::setw(10)<< check_trunc(nickname) <<"|" << std::endl;

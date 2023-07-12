@@ -7,6 +7,7 @@ class PhoneBook
 private:
 	Contact array[8];
 	void	remove_first(Contact c);
+	int		extract_index();
 	int	n;
 public:
 	PhoneBook();
