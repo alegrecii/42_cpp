@@ -5,7 +5,7 @@ FragTrap::FragTrap() : ClapTrap()
 	_hitpoints = 100;
 	_energypoints = 100;
 	_attackdamage = 30;
-	_name = "unknown FragTrap";
+	//_name = "unknown FragTrap";
 	std::cout << "Default FragTrap constructor called" << std::endl;
 }
 

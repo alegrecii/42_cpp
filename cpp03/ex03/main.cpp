@@ -2,17 +2,13 @@
 
 int	main()
 {
-	FragTrap unk;
-	FragTrap Lisa("Lisa");
-	FragTrap Lisa2(Lisa);
-	FragTrap Ale("Ale");
+	DiamondTrap Gabbo("Gabbo");
+	DiamondTrap Ale("Ale");
 
-	unk.attack("Lisa");
-	Lisa.takeDamage(30);
-	Lisa.highFivesGuys();
-	Lisa2.attack("Ale");
+	Gabbo.attack("Ale");
 	Ale.takeDamage(30);
-	Ale.beRepaired(20);
-
+	Ale.beRepaired(30);
+	Ale.whoAmI();
+	Gabbo.whoAmI();
 	return (0);
 }

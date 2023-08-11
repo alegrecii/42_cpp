@@ -15,6 +15,7 @@ public:
 	DiamondTrap(const DiamondTrap &original);
 	DiamondTrap	&operator=(const DiamondTrap &original);
 	void	attack(const std::string &target) override;
+	void	whoAmI();
 
 };
 

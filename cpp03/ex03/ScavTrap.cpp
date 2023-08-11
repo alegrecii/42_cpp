@@ -5,7 +5,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 	_hitpoints = 100;
 	_energypoints = 50;
 	_attackdamage = 20;
-	_name = "unknown scavtrap";
+	//_name = "unknown scavtrap";
 	std::cout << "Default ScavTrap constructor called" << std::endl;
 }
 
