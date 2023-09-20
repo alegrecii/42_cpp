@@ -14,7 +14,7 @@ public:
 	ShrubberyCreationForm(const ShrubberyCreationForm &orig);
 	ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &orig);
 	void	execute(Bureaucrat const & executor) const override;
-	~ShrubberyCreationForm();
+	virtual ~ShrubberyCreationForm();
 };
 
 #endif

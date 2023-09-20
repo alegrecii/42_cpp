@@ -13,7 +13,7 @@ public:
 	PresidentialPardonForm(const PresidentialPardonForm &orig);
 	PresidentialPardonForm	&operator=(const PresidentialPardonForm &orig);
 	void	execute(Bureaucrat const & executor) const override;
-	~PresidentialPardonForm();
+	virtual ~PresidentialPardonForm();
 };
 
 #endif
