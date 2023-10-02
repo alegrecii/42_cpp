@@ -20,10 +20,19 @@ ScalarConverter::ScalarConverter(const ScalarConverter &original)
 
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &original)
 {
+	(void)original;
 	return (*this);
 }
 
 //---------------------------------PRINTERS------------------------------------
+
+void ScalarConverter::precisionSetter(const std::string &value)
+{
+	int precision = 1;
+	if(value.find('.') != std::string::npos)
+		precision = value.length() - value.find('.') - 2;
+	std::cout << std::fixed << std::setprecision(precision);
+}
 
 void ScalarConverter::printChar()
 {
@@ -54,6 +63,7 @@ void ScalarConverter::printFloat()
 
 void ScalarConverter::printDouble()
 {
+
 	std::cout<< "double: " << d << std::endl;
 }
 
@@ -173,18 +183,25 @@ void ScalarConverter::typeFinder(const std::string &value)
 	}
 	else if (value.find('f') != std::string::npos)
 	{
-		f = std::stof(value);
+		f = std::strtof(value.c_str(),NULL);
 		floatConverter();
 	}
 	else if (value.find('.') != std::string::npos)
 	{
-		d = std::stod(value);
+		d = std::strtod(value.c_str(),NULL);
 		doubleConverter();
 	}
 	else
 	{
-		i = std::stoi(value);
+		long int l = strtol(value.c_str(),NULL, 10);
+		if (l > std::numeric_limits<int>::max() || l < std::numeric_limits<int>::min())
+			throw OverflowException();
+		i = std::atoi(value.c_str());
 		intConverter();
+	}
+	if (errno == ERANGE)
+	{
+		throw OverflowException();
 	}
 }
 
@@ -197,6 +214,7 @@ void ScalarConverter::convert(const std::string &value)
 	try
 	{
 		converter.typeFinder(value);
+		converter.precisionSetter(value);
 		converter.printChar();
 		converter.printInt();
 		converter.printFloat();
@@ -204,7 +222,7 @@ void ScalarConverter::convert(const std::string &value)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "This value is out of range for his type!" << '\n';
+		std::cerr << e.what() << std::endl;
 	}
 
 }

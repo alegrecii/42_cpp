@@ -5,6 +5,8 @@
 #include <limits>
 #include <iomanip>
 #include <cmath>
+#include <cstdlib>
+#include <cerrno>
 
 class ScalarConverter
 {
@@ -28,6 +30,14 @@ private:
 	void printInt();
 	void printFloat();
 	void printDouble();
+	void precisionSetter(const std::string &value);
+	class OverflowException : public std::exception
+	{
+		virtual const char *what() const throw()
+		{
+			return ("This value is out of range for his type!");
+		}
+	};
 
 public:
 	void static convert(const std::string &value);
