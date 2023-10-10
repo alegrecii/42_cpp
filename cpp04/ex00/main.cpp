@@ -16,10 +16,15 @@ const WrongAnimal* w = new WrongCat();
 std::cout << w->getType() << " " << std::endl;
 w->makeSound();
 
+const WrongCat* z = new WrongCat();
+std::cout << z->getType() << " " <<std::endl;
+z->makeSound();
+
 delete meta;
 delete i;
 delete j;
 delete w;
+delete z;
 
 return (0);
 }

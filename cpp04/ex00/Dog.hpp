@@ -12,7 +12,7 @@ public:
 	Dog(Dog const &original);
 	~Dog();
 	Dog	&operator=(const Dog &original);
-	void makeSound() const override;
+	void makeSound() const;
 };
 
 

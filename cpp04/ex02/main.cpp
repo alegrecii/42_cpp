@@ -27,5 +27,6 @@ int main()
 	for (int i = 0; i < 4; i++)
 		delete animals[i];
 	std::cout<<"--------Mix Array test over--------"<< std::endl;
+
 return 0;
 }

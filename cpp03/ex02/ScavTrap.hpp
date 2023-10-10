@@ -12,7 +12,7 @@ public:
 	ScavTrap(const ScavTrap &original);
 	ScavTrap	&operator=(const ScavTrap &original);
 	void	guardGate();
-	void	attack(const std::string &target) override;
+	void	attack(const std::string &target);
 	~ScavTrap();
 };
 

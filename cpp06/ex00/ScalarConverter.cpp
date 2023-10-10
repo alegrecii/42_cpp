@@ -31,6 +31,10 @@ void ScalarConverter::precisionSetter(const std::string &value)
 	int precision = 1;
 	if(value.find('.') != std::string::npos)
 		precision = value.length() - value.find('.') - 2;
+	if (precision < 1)
+		precision = 1;
+	if (precision > 6)
+		precision = 6;
 	std::cout << std::fixed << std::setprecision(precision);
 }
 
@@ -121,9 +125,9 @@ bool specialChecker(const std::string &value)
 		std::cout << "float: +inff" << std::endl;
 		std::cout << "double: +inf" << std::endl;
 	}
-	else if (!errorChecker(value))
-		return (false);
-	return (true);
+	else if (errorChecker(value))
+		return (true);
+	return (false);
 }
 
 void ScalarConverter::charConverter()
@@ -158,7 +162,7 @@ void ScalarConverter::doubleConverter()
 		charDisplayable = false;
 	else
 		c = static_cast<char>(d);
-	if (d > std::numeric_limits<float>::max() || d < std::numeric_limits<float>::min())
+	if (std::abs(d) > std::numeric_limits<float>::max())
 		floatOverflow = true;
 	else
 		f = static_cast<float>(d);
@@ -210,6 +214,7 @@ void ScalarConverter::convert(const std::string &value)
 
 	if(!specialChecker(value))
 		return;
+
 	ScalarConverter converter;
 	try
 	{

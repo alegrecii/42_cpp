@@ -12,7 +12,7 @@ public:
 	Cat(Cat const &original);
 	~Cat();
 	Cat	&operator=(const Cat &original);
-	void makeSound() const override;
+	void makeSound() const;
 };
 
 
