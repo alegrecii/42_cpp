@@ -24,7 +24,7 @@ void Span::addNumber(int x)
 	if (this->v.size() < this->N)
 		this->v.push_back(x);
 	else
-		throw std::out_of_range("the vector is full");
+		throw std::out_of_range("the span is full");
 }
 
 int Span::shortestSpan()

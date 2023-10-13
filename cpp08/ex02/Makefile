@@ -1,4 +1,4 @@
-NAME = whatever
+NAME = MutantStack
 
 SRCS = main.cpp
 

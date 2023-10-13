@@ -22,7 +22,7 @@ public:
 		if (this->v.size() + std::distance(start, end) <= this->N)
 			this->v.insert(this->v.end(), start, end);
 		else
-			throw std::string("No more space in Span");
+			throw std::string("the span is full");
 	}
 	int shortestSpan();
 	int longestSpan();
