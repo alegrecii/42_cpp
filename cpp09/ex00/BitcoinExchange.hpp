@@ -5,6 +5,7 @@
 #include <fstream>
 #include <map>
 #include <sstream>
+#include <cstdlib>
 
 class BitcoinExchange
 {
@@ -13,6 +14,7 @@ private:
 	std::ifstream *input;
 	std::map<std::string, std::string> map_filler(std::ifstream &file);
 	BitcoinExchange();
+	double rateFounder(int &year, int &month, int &day);
 	void value_printer(std::string &date, std::string &value);
 	bool input_checker(std::string &line, std::string &date, std::string &value);
 public:

@@ -4,6 +4,7 @@ BitcoinExchange::BitcoinExchange()
 {
 }
 
+
 std::map<std::string,std::string> BitcoinExchange::map_filler(std::ifstream &file)
 {
 	std::string line;
@@ -41,11 +42,64 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange &original)
 	return (*this);
 }
 
+bool dateChecker(int &year, int &month, int &day, std::string &date)
+{
+	if (date.length() != 10)
+		return false;
+	for (size_t i = 0; i < date.length(); i++)
+	{
+		if (date[i] != '-' && (i == 4 || i == 7))
+			return false;
+		else if (!isdigit(date[i]) && i != 4 && i != 7)
+			return false;
+		if (date[i] == '-')
+			date[i] = ' ';
+	}
+	std::istringstream iss(date);
+	iss >> year >> month >> day;
+
+	if (iss.fail())
+		return false;
+	if (month < 1 || month > 12)
+		return false;
+	if (day < 1 || day > 31)
+		return false;
+	return true;
+}
+
+bool valueChecker(std::string &value, double &v)
+{
+	v = std::strtod(value.c_str(),NULL);
+	if (v < 0)
+		std::cout << "Error: not a positive number" << std::endl;
+	else if (v > 1000)
+		std::cout << "Error: too large number" << std::endl;
+	else
+		return true;
+	return false;
+}
+
+double BitcoinExchange::rateFounder(int &year, int &month, int &day)
+{
+	return 0.0;
+}
+
 void BitcoinExchange::value_printer(std::string &date, std::string &value)
 {
-	(void) date;
-	(void) value;
-	std::cout << "OK" << std::endl;
+	int year;
+	int month;
+	int day;
+	double v;
+	if(!dateChecker(year, month, day, date))
+	{
+		std::cout << "Error: date not recognized" << std::endl;
+		return;
+	}
+	if (!valueChecker(value,v))
+		return;
+
+	double cRate = rateFounder(year,month,day);
+	std::cout << "OK" << "year: "<< year << " month: " << month << " day: " << day << " value: " << value << std::endl;
 }
 
 bool isNumeric(std::string &str)
@@ -90,7 +144,7 @@ bool BitcoinExchange::input_checker(std::string &line, std::string &date, std::s
 	}
 	if (!isNumeric(value))
 	{
-		std::cout << "Value not recognized in this line" << std::endl;
+		std::cout << "Error: Value not recognized in this line" << std::endl;
 		return false;
 	}
 		return true;
