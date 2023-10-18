@@ -9,6 +9,7 @@ std::map<std::string,std::string> BitcoinExchange::map_filler(std::ifstream &fil
 {
 	std::string line;
 	std::map<std::string, std::string> map;
+	std::getline(file,line);
 	while(std::getline(file,line))
 	{
 		std::string key;
@@ -42,7 +43,7 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange &original)
 	return (*this);
 }
 
-bool dateChecker(int &year, int &month, int &day, std::string &date)
+bool dateChecker(int &year, int &month, int &day, std::string date)
 {
 	if (date.length() != 10)
 		return false;
@@ -58,11 +59,7 @@ bool dateChecker(int &year, int &month, int &day, std::string &date)
 	std::istringstream iss(date);
 	iss >> year >> month >> day;
 
-	if (iss.fail())
-		return false;
-	if (month < 1 || month > 12)
-		return false;
-	if (day < 1 || day > 31)
+	if (month < 1 || month > 12 || day < 1 || day > 31)
 		return false;
 	return true;
 }
@@ -79,9 +76,19 @@ bool valueChecker(std::string &value, double &v)
 	return false;
 }
 
-double BitcoinExchange::rateFounder(int &year, int &month, int &day)
+double BitcoinExchange::rateFounder(std::string &date)
 {
-	return 0.0;
+	std::map<std::string, std::string>::iterator it;
+	std::string rate = "0";
+	for (it = conv.begin(); it != conv.end(); it++)
+	{
+		if (it->first.compare(date) > 0)
+			break;
+		rate = it->second;
+		if (it->first.compare(date) == 0)
+			break;
+	}
+	return std::strtod(rate.c_str(),NULL);
 }
 
 void BitcoinExchange::value_printer(std::string &date, std::string &value)
@@ -98,8 +105,8 @@ void BitcoinExchange::value_printer(std::string &date, std::string &value)
 	if (!valueChecker(value,v))
 		return;
 
-	double cRate = rateFounder(year,month,day);
-	std::cout << "OK" << "year: "<< year << " month: " << month << " day: " << day << " value: " << value << std::endl;
+	double cRate = rateFounder(date);
+	std::cout << date << " => " << value << " = " << cRate  * v << std::endl;
 }
 
 bool isNumeric(std::string &str)
