@@ -17,6 +17,7 @@ AForm *Intern::createSCF(std::string target)
 
 AForm *Intern::error(std::string target)
 {
+	(void) target;
 	throw NoMatchesException();
 	return (NULL);
 }
@@ -32,6 +33,7 @@ Intern::Intern(Intern const &original)
 
 Intern Intern::operator=(Intern const &original)
 {
+	(void) original;
 	return *this;
 }
 

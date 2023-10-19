@@ -31,6 +31,7 @@ void identify(Base &p)
 	{
 		A &a = dynamic_cast<A&>(p);
 		std::cout << "A" << std::endl;
+		(void) a;
 	}
 	catch(const std::exception& e)
 	{
@@ -38,6 +39,7 @@ void identify(Base &p)
 		{
 			B &b = dynamic_cast<B&>(p);
 			std::cout << "B" << std::endl;
+			(void) b;
 		}
 		catch(const std::exception& e)
 		{
@@ -45,6 +47,7 @@ void identify(Base &p)
 			{
 				C &c = dynamic_cast<C&>(p);
 				std::cout << "C" << std::endl;
+				(void) c;
 			}
 			catch(const std::exception& e)
 			{
@@ -56,7 +59,7 @@ void identify(Base &p)
 
 int main()
 {
-	std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	std::srand(static_cast<unsigned int>(std::time(NULL)));
 	Base *p = generate();
 	identify(p);
 	identify(*p);

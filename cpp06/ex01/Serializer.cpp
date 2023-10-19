@@ -11,6 +11,7 @@ Serializer::Serializer(Serializer const &original)
 
 Serializer& Serializer::operator=(Serializer const &original)
 {
+	(void) original;
 	return *this;
 }
 

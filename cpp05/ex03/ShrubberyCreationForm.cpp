@@ -5,7 +5,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation", 145
 	target = "default";
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : ShrubberyCreationForm()
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubbery Creation", 145, 137)
 {
 	this->target = target;
 }
@@ -25,7 +25,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	if(checkExec(executor))
 	{
-		std::ofstream	file(target + "_shrubbery");
+		std::ofstream	file((target + "_shrubbery").c_str());
 		if (!file.is_open())
 		{
 			std::cerr << "Error in shrubbery_file creation"<<std::endl;

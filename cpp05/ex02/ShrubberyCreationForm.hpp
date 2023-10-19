@@ -13,7 +13,7 @@ public:
 	ShrubberyCreationForm(std::string target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &orig);
 	ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &orig);
-	void	execute(Bureaucrat const & executor) const override;
+	void	execute(Bureaucrat const & executor) const;
 	~ShrubberyCreationForm();
 };
 

@@ -6,7 +6,7 @@ PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Pardon", 
 	target = "default";
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : PresidentialPardonForm()
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Pardon", 25, 5)
 {
 	this->target = target;
 }

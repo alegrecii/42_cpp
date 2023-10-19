@@ -5,7 +5,7 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy Request", 72, 45)
 	target = "default";
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : RobotomyRequestForm()
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy Request", 72, 45)
 {
 	this->target = target;
 }
@@ -26,7 +26,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	if(checkExec(executor))
 	{
 		std::cout << "Vrrr...Vrrrrrrr..Vrrrr.." << std::endl;
-		std::srand(static_cast<unsigned int>(std::time(nullptr)));
+		std::srand(static_cast<unsigned int>(std::time(NULL)));
 		if(std::rand()%2)
 			std::cout << target << " has been robotmized" << std::endl;
 		else
