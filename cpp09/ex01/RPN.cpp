@@ -72,7 +72,10 @@ int RPN::calculate(std::string &input)
 			stack.push(num);
 		}
 	}
-	std::cout << stack.top() << std::endl;
+	if (stack.size() > 1)
+		std::cout << "Syntax Error" << std::endl;
+	else
+		std::cout << stack.top() << std::endl;
 	return 0;
 }
 
