@@ -58,6 +58,8 @@ int main(int, char**)
     {
         numbers[i] = rand();
     }
+    unsigned int z = 0;
+    Array<int> empty(z);
     delete [] mirror;//
     return 0;
 }
